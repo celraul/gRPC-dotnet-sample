@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcVideoStreaming";
+
+service VideoStream {
+  // Server streaming for sending video chunks
+  rpc StreamVideo (VideoRequest) returns (stream VideoChunk);
+}
+
+message VideoRequest {
+  string videoId = 1;
+}
+
+message VideoChunk {
+  bytes content = 1;
+  int32 chunkSize = 2;
+}
